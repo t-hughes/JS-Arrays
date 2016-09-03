@@ -351,11 +351,9 @@ array with those four objects. After that console.log the length of the Array an
 sure that it's equal to 4. */
 
 //Code Here
-function addDudes() {
-    var devMountainEmployees = [];
-    devMountainEmployees.push(tyler, cahlan, ryan, colt);
-    return devMountainEmployees;
-    }
+  devMountainEmployees.push(tyler, cahlan, ryan, colt);
+    console.log(devMountainEmployees.length);
+
 
 /*Now let's say Cahlan has a mental breakdown and has to take a leave of absence to 'find himself'.
 Loop through your devMountainEmployees until you find cahlan, then remove him from the array.*/
@@ -420,35 +418,31 @@ var users = [];
 following properties. name, email, password, username.*/
 
 //include this as one of the objects in your array.
-var user1 = {
+var users = [
+user1 = {
     name: 'Tyler McGinnis',
     email: 'tylermcginnis33@gmail.com',
     password: 'iLoveJavaScript',
     username: 'infiniateLoop'
-};
+},
 
 //Your Code Here
-var users = [{
+user2 = {
   name: 'talon',
   email: 'talon@test.com',
   password: 'test1234',
   username: 'tdog',
-},{
+},
+
+user3 = {
   name: 'lauren',
   email: 'lauren@test.com',
   password: 'admin1234',
-  username: 'ldogg',
-},{
-  name: 'cohen',
-  email: 'cohen@test.com',
-  password: 'baby1234',
-  username: 'cdoggy',
-},{
-  name: 'Tyler McGinnis',
-  email: 'tylermcginnis33@gmail.com',
-  password: 'iLoveJavaScript',
-  username: 'infiniateLoop'
-}];
+  username: 'ldoggy',
+}
+];
+
+
 /*Now you have a very common data structure. Twitter is a good use case.
 It's easy to imagine that your followers list on Twitter is an Array full or objects
 and those objects contain properties about the specific person you follow.*/
@@ -458,14 +452,14 @@ objects until you find Tyler's account (use tylermcginnis33@gmail.com to find hi
 Once you find the particular index he's located in, delete him from the array.*/
 
 //Code Here
-var removeUser = function(data, email) {
-  var index = data.findIndex(function(item) {
-    return item.email === email;
-  });
-  data.splice(index, 1);
-};
-removeUser(users,'tylermcginnis33@gmail.com');
-console.log(users);
+function deleteUser(email) {
+  for(var i = 0; i < users.length; i++) {
+     if(users[i].email === 'tylermcginnis33@gmail.com') {
+       users.splice(i, 1);
+       return users;
+     }
+  }
+}
 
 
 //The activity we just did is very much how data works in 'the real world'.
