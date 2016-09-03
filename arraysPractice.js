@@ -359,22 +359,16 @@ sure that it's equal to 4. */
 Loop through your devMountainEmployees until you find cahlan, then remove him from the array.*/
 
 //Code Here
+for(var i = 0; i < devMountainEmployees.length; i++) {
+    var cahlan = devMountainEmployees[i];
 
-function deleteDude(devMountainEmployees, deletedDude) {
-    if (!devMountainEmployees) {
-        return [];
+    if(userToDelete.indexOf('Cahlan'.name) !== -1) {
+        devMountainEmployees.splice(i, 1);
+        i--;
     }
-  var userExist = false;
-devMountainEmployees.forEach(function(item, index) {
-    if (item === deletedDude) {
-        devMountainEmployees.splice(name, 1);
-    }
-  });
-  if (!userExist) {
-       devMountainEmployees.splice(deletedDude);
-     }
-     return devMountainEmployees;
 }
+
+
 
 
 
