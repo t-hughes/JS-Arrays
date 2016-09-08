@@ -7,7 +7,7 @@ var arr = [10, 20, 30];
 //Code Here
 function first(arr) {
     return arr[0];
-    //or return arr.shift();//
+    //or return arr.shift(); 
 }
 
 
@@ -18,9 +18,9 @@ function first(arr) {
 var arr = [40, 50, 60];
 //Create a function named 'last' that is given 'arr' as the argument and returns the last item in the given array.
 function last(arr) {
-    return arr[2];
-    //or return.pop();//
-    //or return arr[arr.length - 1];
+    return arr[2]; //GG: This one works given that the array has exactly 3 items (index 2 would be the third position, 0, 1, 2) but will not work for an array of any other length.
+    //or return.pop(); //GG: This one works.
+    //or return arr[arr.length - 1]; //GG: So does this one.
 }
 
 //Code Here
@@ -90,7 +90,7 @@ function evenFinder(arr) {
     return newArray;
 
 }
-
+//GG: Another way we could do this is with .filter() to filter out the odd values.
 
 //Next problem
 
@@ -145,11 +145,11 @@ function finder(arr) {
 }
 //or//
 
-arr.forEach(function(item) {
-    if (item === random) {
-        return true;
-    }
-});
+// arr.forEach(function(item) {
+//     if (item === random) {
+//         return true;
+//     }
+// });
 
 //Next problem
 
@@ -198,6 +198,10 @@ function removeItem(myGroceryList, removedItem) {
     if (!myGroceryList) {
         return [];
     }
+    //GG: A trick we can do here to simplify is to write:
+    //GG:  myGroceryList = myGroceryList || []; 
+    //GG: This basically juset set myGroceryList to myGroceryList if myGroceryList is truthy, if it isn't then it set it to an empty array.
+    
     myGroceryList.forEach(function(item, index) {
         if (item === removedItem) {
             myGroceryList.splice(index, 1);
@@ -256,7 +260,7 @@ function addTen(arr) {
         return parseInt(item) + 10;
     });
 }
-
+//GG: .map() is super handy huh?
 
 //Next Problem
 
@@ -300,7 +304,7 @@ function both(arr1, arr2) {
     }
     return newArray;
 }
-
+//GG: This is a really clever way of accomplishing this! My solution was to just use nested for loops but this is way more elegant. Nice job!
 
 
 //or//
@@ -360,14 +364,24 @@ Loop through your devMountainEmployees until you find cahlan, then remove him fr
 
 //Code Here
 for(var i = 0; i < devMountainEmployees.length; i++) {
-    var cahlan = devMountainEmployees[i];
+    var cahlan = devMountainEmployees[i]; //GG: You are changing the value of 'cahlan' every time your loop iterates.
 
-    if(userToDelete.indexOf('Cahlan'.name) !== -1) {
+    if(userToDelete.indexOf('Cahlan'.name) !== -1) { //GG: Doesn't look like you have'userToDelete' defined which would break this.
         devMountainEmployees.splice(i, 1);
         i--;
     }
 }
 
+//GG: Simpliest solution here in my mind would be to just loop over the array and check the current item against the name we want to delete.
+//GG: If it's found, then splice it. 
+//GG:
+/*
+    devMountainEmployees.forEach(function(item, index){
+        if(item.name === 'Cahlan'){
+            devMountainEmployees.splice(index, 1);
+        }
+    });
+*/
 
 
 
@@ -446,14 +460,28 @@ objects until you find Tyler's account (use tylermcginnis33@gmail.com to find hi
 Once you find the particular index he's located in, delete him from the array.*/
 
 //Code Here
-function deleteUser(email) {
+function deleteUser(email) { //GG: maybe consider taking in two parameters... the array you want to loop over and then the item you want to search for.
   for(var i = 0; i < users.length; i++) {
      if(users[i].email === 'tylermcginnis33@gmail.com') {
        users.splice(i, 1);
-       return users;
+       return users; //We want to make sure we return our array OUTSIDE of our for loop. Otherwise our for loop will only run 1 time and then exit because when we RETURN it exits the function.
      }
   }
 }
+
+//GG: So this totally works, however your email parameter you have is not being utilized. You could remove it, or better yet write your function to ulitize it (and maybe add an array parameter as well).
+//GG: So that would look like:
+//GG:
+/*
+    functiondeleteUser(array, email){
+        for(var i = 0; i < array.length; i++){
+            if(array[i].email === email){
+                array.splice(i, 1);
+            }
+        }
+        return array;
+    }
+*/
 
 
 //The activity we just did is very much how data works in 'the real world'.
